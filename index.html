@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio - Julius Caesar</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="icons/icon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      media="print"
+      onload="this.media='all'"
+    />
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen">
+      <div class="spinner"></div>
+      <h2>loading...</h2>
+    </div>
+
+    <!-- Main content -->
+    <div id="backgroundCanvas"></div>
+
+    <div class="content">
+      <div class="container-text">
+        <h4>Greetings, Everyone. My Name Is</h4>
+        <h1>Julius <span>Caesar</span></h1>
+        <h3><span>Commander</span> Warrior</h3>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1>Input Form</h1>
+      <form id="inputForm">
+        <label for="inputData">Plaintext:</label>
+        <input type="text" id="inputData" name="inputData" required />
+
+        <div class="algorithm">
+          <div class="algorithmSub">
+            <label for="optionSelect">Cipher Algorithm:</label>
+            <select id="optionSelect" name="optionSelect">
+              <option value="1">playfair</option>
+            </select>
+          </div>
+          <a
+            id="algorithmButton"
+            href="https://drive.google.com/drive/folders/1Gx3HP99TUHIOVu-NSOSWORtLmbbrnUzI"
+            target="_blank"
+            >View</a
+          >
+        </div>
+
+        <fieldset>
+          <legend>Select Mode:</legend>
+          <label>
+            <input type="radio" name="mode" value="encrypt" checked />
+            Encrypt
+          </label>
+          <label>
+            <input type="radio" name="mode" value="decrypt" /> Decrypt
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Use AI in Decryption?</legend>
+          <label>
+            <input type="radio" name="useAI" value="true" checked /> Yes
+          </label>
+          <label> <input type="radio" name="useAI" value="false" /> No </label>
+        </fieldset>
+
+        <button class="all" type="submit">Submit</button>
+      </form>
+
+      <h1>Output Form</h1>
+      <form id="outputForm">
+        <label for="outputData">Ciphertext:</label>
+        <textarea id="outputData" name="outputData" readonly></textarea>
+      </form>
+    </div>
+    <!-- Deferred script loading -->
+    <script>
+      window.addEventListener("load", function () {
+        setTimeout(() => {
+          document.body.classList.add("loaded");
+        }, 250);
+      });
+    </script>
+    <script type="module" src="./main.js" defer></script>
+  </body>
+</html>
