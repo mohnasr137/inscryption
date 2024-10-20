@@ -111,15 +111,15 @@ h1 {
 }
 
 label {
-  margin: 0.2rem 0.2rem;
+  margin: 0rem 0.2rem;
 }
 
 input[type="text"],
 select,
 textarea {
   width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
+  padding: 0.65rem;
+  margin-bottom: 0.6rem;
   background-color: black;
   color: var(--light-1);
   border: 1px solid var(--light-1);
@@ -155,7 +155,7 @@ textarea {
 
 fieldset {
   border: 1px solid var(--light-1);
-  padding: 10px;
+  padding: 8px;
   margin-bottom: 20px;
 }
 
@@ -170,28 +170,20 @@ legend {
 
 .algorithm {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-}
-
-.algorithmSub {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  flex-grow: 1;
+  align-items: flex-start;
 }
 
 .algorithmSub {
-  flex-grow: 1;
+  width: 100%;
   display: flex;
-  align-items: flex-start;
-  margin-right: 10px;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 0.8rem;
 }
 
-#algorithmButton {
-  margin: auto;
+#optionSelect {
+  margin: 0rem;
 }
 
 #algorithmButton {
@@ -200,8 +192,7 @@ legend {
   color: var(--light-1);
   padding: 10px;
   text-decoration: none;
-  margin-top: calc(18px + 00.4rem);
-  padding: 10px;
+  margin-left: 10px;
   background-color: var(--first-color);
   border-radius: 3px;
   border: 3px solid transparent;
@@ -248,7 +239,7 @@ legend {
   }
 
   label {
-    margin: 0.2rem 0.1rem;
+    margin: 0rem 0.1rem;
     font-size: 0.85rem;
   }
 
@@ -256,6 +247,7 @@ legend {
   select,
   textarea {
     margin-bottom: 0.5rem;
+    padding: 0.45rem;
   }
 
   button {
@@ -269,7 +261,7 @@ legend {
   }
 
   fieldset {
-    padding: 8px;
+    padding: 6px;
     margin-bottom: 18px;
   }
 

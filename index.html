@@ -46,18 +46,20 @@
         <input type="text" id="inputData" name="inputData" required />
 
         <div class="algorithm">
+          <label for="optionSelect">Cipher Algorithm:</label>
           <div class="algorithmSub">
-            <label for="optionSelect">Cipher Algorithm:</label>
             <select id="optionSelect" name="optionSelect">
-              <option value="1">playfair</option>
+              <option value="1">Caesar</option>
+              <option value="2">Monoalphabetic</option>
+              <option value="3">Playfair</option>
             </select>
+            <a
+              id="algorithmButton"
+              href="https://drive.google.com/drive/folders/1Gx3HP99TUHIOVu-NSOSWORtLmbbrnUzI"
+              target="_blank"
+              >View</a
+            >
           </div>
-          <a
-            id="algorithmButton"
-            href="https://drive.google.com/drive/folders/1Gx3HP99TUHIOVu-NSOSWORtLmbbrnUzI"
-            target="_blank"
-            >View</a
-          >
         </div>
 
         <fieldset>
@@ -84,8 +86,8 @@
 
       <h1>Output Form</h1>
       <form id="outputForm">
-        <label for="outputData">Ciphertext:</label>
-        <textarea id="outputData" name="outputData" readonly></textarea>
+        <label for="output">Ciphertext:</label>
+        <textarea id="output" name="output" readonly></textarea>
       </form>
     </div>
     <!-- Deferred script loading -->
