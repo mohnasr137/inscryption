@@ -8,6 +8,7 @@ import spline from "./imports/spline.js";
 import caesar from "./imports/caesar.js";
 import monoalphabetic from "./imports/monoalphabetic.js";
 import playfair from "./imports/playfair.js";
+import hill from "./imports/hill.js";
 const secretKey = import.meta.env.VITE_TEST_KEY;
 
 const genAI = new GoogleGenerativeAI(secretKey);
@@ -15,9 +16,11 @@ const GenerativeAI = async (text, type) => {
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   let prompt;
   if (type == "monoalphabetic") {
-    prompt = `I used the ${type} cipher, and the decoding result is '${text}'. Please convert this result into a formal format, , making any necessary changes for better human understanding, Please respond with only the formal result.`;
+    prompt = `I used the ${type} cipher, and the decoding result is '${text}'. Please convert this result into a formal format, making any necessary changes for better human understanding, Please respond with only the formal result.`;
   } else if (type == "playfair") {
     prompt = `I used the ${type} cipher, and the decoding result is '${text}'. Please convert this result into a formal format, making any necessary changes for better human understanding. During Playfair cipher encryption, the following modifications occur: the letter 'J' is replaced with 'I'; non-alphabetical characters (punctuation, spaces, numbers) are removed; all characters are converted to uppercase (e.g., 'Hello' becomes 'HELLO'); identical adjacent letters are separated by 'X' (e.g., 'HELLO' becomes 'HELX LO'); if the text has an odd number of letters, an 'X' is added at the end. The encoding process involves substituting letters based on their positions in a 5x5 matrix: if they are in the same row, they are shifted to the right (wrapping around if necessary); if they are in the same column, they are shifted down (wrapping around if needed); if they form a rectangle, the columns are swapped. These changes can significantly alter the appearance and length of the encoded text due to character replacements, uppercase conversion, added 'X' characters, and pairing. For example, the original text 'HELLO' undergoes several transformations: replacing 'J' (no change), removing non-alphas (no change), uppercasing (no change), pairing (transforms to ['HE', 'LX', 'LO']), and encoding based on matrix positions (results may vary). During decryption, the process is reversed, but differences may remain due to character replacements and initial formatting changes. Potential enhancements to the cipher could include handling additional characters, maintaining case sensitivity, and allowing dynamic matrix sizes based on keyword length. Please respond with only the formal result.`;
+  } else if (type == "hill") {
+    prompt = `I used the ${type} cipher with a matrix size of 2x2, and the decoding result is '${text}'. Please convert this result into a formal format, making any necessary changes for better human understanding. During Hill cipher encryption, the following transformations occur: the text is divided into blocks matching the matrix size, non-alphabetic characters are removed, all letters are converted to uppercase, and if needed, padding (e.g., 'X') is added to make the text length a multiple of the matrix size. Each block is then converted into numeric values (A=0, B=1, …, Z=25) and multiplied by the key matrix, with results taken modulo 26. For example, an input like 'HELLO' with a 2x2 matrix key could undergo the following transformations: removal of non-alphabetic characters (if any), conversion to uppercase (HELLO), and padding (if needed) to produce blocks ['HE', 'LL', 'O']. Each block is encrypted by matrix multiplication, potentially resulting in an altered length and character sequence. During decryption, this process is reversed, though variations may arise due to the modular arithmetic and initial formatting adjustments. Potential enhancements to the cipher could include dynamic padding, handling additional characters, and allowing different alphabetic or numeric bases for flexibility in encryption. Please respond with only the formal result.`;
   }
   const result = await model.generateContent([prompt]);
   const response = result.response;
@@ -155,6 +158,12 @@ document
           data,
           "playfair"
         );
+      } else if (optionSelect == 4) {
+        data = hill({ text, mode });
+        document.getElementById("output").value = await GenerativeAI(
+          data,
+          "hill"
+        );
       }
     } else {
       if (optionSelect == 1) {
@@ -166,6 +175,11 @@ document
         });
       } else if (optionSelect == 3) {
         document.getElementById("output").value = playfair({
+          text,
+          mode,
+        });
+      } else if (optionSelect == 4) {
+        document.getElementById("output").value = hill({
           text,
           mode,
         });
@@ -186,5 +200,8 @@ optionSelect.addEventListener("change", function (event) {
   } else if (selectedColor == 3) {
     document.getElementById("algorithmButton").href =
       "https://drive.google.com/drive/folders/1Gx3HP99TUHIOVu-NSOSWORtLmbbrnUzI";
+  } else if (selectedColor == 4) {
+    document.getElementById("algorithmButton").href =
+      "https://drive.google.com/drive/folders/1NRCZKRtzs2ne2EubghT7YJa8JeM1EWFQ";
   }
 });
